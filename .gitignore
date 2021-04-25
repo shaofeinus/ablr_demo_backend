@@ -1,0 +1,6 @@
+data/
+venv/
+.idea/
+.env.*
+
+*.sqlite3
