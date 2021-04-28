@@ -69,7 +69,14 @@ class MyInfoSecurity:
 
   def get_decoded_access_token(self, access_token: str) -> dict:
     return jwt.decode(
-      access_token, self.public_key, algorithms=['RS256'], options={'verify_aud': False}
+      access_token,
+      self.public_key,
+      algorithms=['RS256'],
+      options={
+        'verify_aud': False,
+        # Do not verify nbf due to possible mismatch of timings between systems
+        'verify_nbf': False
+      }
     )
 
   def get_decrypted_person_data(self, person_data: str) -> dict:

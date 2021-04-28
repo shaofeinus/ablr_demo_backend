@@ -116,8 +116,6 @@ class MyInfoClient(object):
     """
     access_token_resp = self.get_access_token(code)
     access_token = access_token_resp['access_token']
-    # Wait for a while before fetching personal data to avoid timing mismatch issue when fetching data from MyInfo
-    time.sleep(2)
     decoded_access_token = self.security_obj.get_decoded_access_token(access_token)
     uinfin = decoded_access_token['sub']
     person_data_resp = self.get_person(uinfin=uinfin, access_token=access_token)
